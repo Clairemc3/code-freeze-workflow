@@ -26,11 +26,6 @@ In this demo, the required label is:
 - `.github/workflows/code-freeze-gate.yml`: workflow that enforces the freeze rule.
 - `.github/pull_request_template.md`: reminder checklist for PR authors.
 
-## Team Agreement Model
-
-Maintainers add `freeze-exception-approved` only after the team agrees the change can merge during freeze.
-This label is the explicit "click" action that unlocks the PR during the freeze window.
-
 ## Branch Protection
 
 Require the `Code Freeze Gate` check before merging to `main`.
