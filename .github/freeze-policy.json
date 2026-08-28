@@ -1,8 +1,8 @@
 {
   "timezone": "UTC",
   "freezeWindow": {
-    "startMonthDay": "12-01",
-    "endMonthDay": "12-31"
+    "startMonthDay": "08-01",
+    "endMonthDay": "10-01"
   },
   "rules": {
     "targetBranch": "main",
