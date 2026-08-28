@@ -1,0 +1,11 @@
+{
+  "timezone": "UTC",
+  "freezeWindow": {
+    "startMonthDay": "12-01",
+    "endMonthDay": "12-31"
+  },
+  "rules": {
+    "targetBranch": "main",
+    "requiredExceptionLabel": "freeze-exception-approved"
+  }
+}
