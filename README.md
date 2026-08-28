@@ -1,19 +1,20 @@
 # Code Freeze Workflow Demo
 
-This demo project shows one way to enforce an annual code freeze for `main` using GitHub Actions.
+This demo project shows one way to run an annual code freeze gate for `main` using GitHub Actions.
 
 ## Goal
 
-For about one month each year, merges into `main` are blocked by default.
+For about one month each year, pull requests to `main` are blocked by default.
 
-During the freeze window, only pull requests that have been explicitly approved by the team can merge.
+During the freeze window, a maintainer must explicitly add an agreement label to allow merge.
 
 ## How It Works
 
 1. A workflow runs on pull requests targeting `main`.
 2. The workflow checks whether today's date is inside the configured freeze window.
 3. If there is no active freeze window, the check passes.
-4. If there is an active freeze window, the PR must include a required approval label.
+4. If there is an active freeze window and the PR is missing the label, the check fails.
+5. A maintainer can unblock by adding the required label to the PR.
 
 In this demo, the required label is:
 
@@ -22,17 +23,19 @@ In this demo, the required label is:
 ## Files
 
 - `.github/freeze-policy.json`: annual freeze dates and approval rules.
-- `.github/workflows/code-freeze-gate.yml`: workflow that enforces the rule.
+- `.github/workflows/code-freeze-gate.yml`: workflow that enforces the freeze rule.
 - `.github/pull_request_template.md`: reminder checklist for PR authors.
 
 ## Team Agreement Model
 
-Use GitHub permissions so only trusted maintainers can add the `freeze-exception-approved` label.
-That label acts as evidence that the team agreed this change can merge during freeze.
+Maintainers add `freeze-exception-approved` only after the team agrees the change can merge during freeze.
+This label is the explicit "click" action that unlocks the PR during the freeze window.
 
-## Suggested Branch Protection
+## Branch Protection
 
-In your repository settings, require the `Code Freeze Gate` check to pass before merging into `main`.
+Require the `Code Freeze Gate` check before merging to `main`.
+
+Note: this workflow is intentionally triggered by `pull_request`, so workflow updates can be tested from the incoming PR branch.
 
 ## Example Freeze Window
 
